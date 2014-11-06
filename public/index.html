@@ -1,0 +1,25 @@
+<html ng-app="myApp" ng-controller="AppCtrl">
+  <head>
+    <title>TEST ANGULAR</title>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+    <script src="bower_components/jquery/dist/jquery.js"></script>
+    <script src="bower_components/angular/angular.js"></script>
+    <script src="bower_components/angular-resource/angular-resource.js"></script>
+    <script src="bower_components/angular-route/angular-route.js"></script>
+
+    <script src="bower_components/socket.io-client/socket.io.js"></script>
+    <script src="javascripts/app.js"></script>
+  </head>
+  <body>
+    <h1>index.html</h1>
+
+    Username: <input type="text" ng-model="model.username">
+    Message: <input type="text" ng-model="model.message">
+    <input type="button" value="Send message"  ng-click="sendMessage(model)">
+    
+    <hr id="messages"/>
+
+  </body>
+</html>

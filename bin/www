@@ -7,3 +7,26 @@ app.set('port', process.env.PORT || 3000);
 var server = app.listen(app.get('port'), function() {
   debug('Express server listening on port ' + server.address().port);
 });
+
+
+var io = require('socket.io')(server);
+
+io.on('connection', function(socket){
+  console.log("CONNECTION");
+  socket.emit("event", { some: "Welcome!", date : new Date()});
+  socket.join("all");
+
+  // socket.to("others").emit("event", { some: "connection made from somewhere!!!" });
+
+  socket.on('event', function(data){
+    console.log("event", data);
+    socket.to("all").emit("event", { some: "got event", event: data });
+  });
+
+  socket.on('disconnect', function(){
+    console.log("DISCONNECT");
+    socket.to("all").emit("disconnectMade", { some: "data2" });
+  });
+});
+
+console.log("websocket server created");
